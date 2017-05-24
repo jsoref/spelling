@@ -1,0 +1,4 @@
+#!/bin/sh
+# ~/bin/gl
+# Run ~/bin/gl.pl
+~/bin/gl.pl | uniq
