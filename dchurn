@@ -1,0 +1,15 @@
+#!/bin/sh
+# ~/bin/dchurn
+# check a diff to see what new tokens it's introducing
+if [ "$1" = "" ]; then
+  cat - > _dchurn
+  a=_dchurn
+  b=1
+else
+  a=$1
+fi
+cat $a | dn-b | w > $a.base
+cat $a | dn | w > $a.new
+diff -U0 $a.base $a.new | dn | w
+rm $a.base $a.new
+[ "$b" = "1" ] && rm $a

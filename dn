@@ -1,0 +1,10 @@
+#!/bin/perl -n
+# ~/bin/dn
+# parse diff output and return only the content that was added
+#
+# This excludes context, lines removed, and
+# lines that appear to be marking the names of files
+next unless /^\+/;
+next if /^\+{3} /;
+s/^.//;
+print;

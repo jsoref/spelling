@@ -15,6 +15,14 @@ f:
   `f repository`
 - Runs `w` on files (excludes repositories / certain file types)
 
+fchurn:
+- Find newly misspelled words in a repository since the last run:
+  `fchurn repository`
+
+dchurn:
+- Find newly misspelled words in a diff:
+  `d|dchurn`
+
 w:
 - Generate a list of tokens that might be misspelled
 - You will need to feed this to another tool (`Google Suggest`, `MS Word`, ..., or
@@ -49,6 +57,10 @@ b:
 d:
 - Diff:
   `d -U0 -c.`
+
+dn:
+- Select only new lines from diff output:
+  `d | dn | w`
 
 hesort:
 - Sort spelling commits:
@@ -143,6 +155,24 @@ s this
 ...
 hg rebase -r 'spelling % ignore' -d master
 # exclude the ignore commit(s) and return to master
+```
+
+## Dev workflow
+If you're reviewing patches:
+```sh
+fchurn repository
+patch -d repository -p1 < proposed-commit
+fchurn repository
+```
+
+If you're trying to catch typos before you commit:
+```sh
+fchurn repository
+pushd repository
+# make changes
+...
+popd
+fchurn repository
 ```
 
 ## License

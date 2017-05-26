@@ -1,0 +1,4 @@
+#!/bin/sh
+[ -e $1.words ] && mv $1.words $1.old
+f $1 > $1.words
+[ -e $1.old ] && diff -U0 $1.old $1.words|dn|w
