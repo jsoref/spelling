@@ -15,6 +15,13 @@ word=$1
 if [ -z "$word" ]; then
 word=$(echo $new|tr A-Z a-z)
 fi
-grep -Z -l -ir "$old" `find . -mindepth 1 -maxdepth 1 -type f -name '.*'` * |xargs -0 -I{} ~/bin/r "s/$old/$new/g" "{}"
+
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Darwin*) usenull=--null;;
+    *)       usenull=-Z;;
+esac
+
+grep $usenull -l -ir "$old" `find . -mindepth 1 -maxdepth 1 -type f -name '.*'` * |xargs -0 -I{} ~/bin/r "s/$old/$new/g" "{}"
 ~/bin/s "$word"
 #$(echo $new|tr A-Z a-z)
