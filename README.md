@@ -23,6 +23,10 @@ dchurn:
 - Find newly misspelled words in a diff:
   `d|dchurn`
 
+rediff:
+- Find word changes from a diff:
+  `d -U0 -c.|rediff`
+
 w:
 - Generate a list of tokens that might be misspelled
 - You will need to feed this to another tool (`Google Suggest`, `MS Word`, ..., or

@@ -1,0 +1,32 @@
+#!/usr/bin/perl
+
+open AA, ">", "/tmp/local";
+open BB, ">", "/tmp/remote";
+my $a = 0;
+while (<>) {
+  if (m!^---\sa/(.*)!) {
+    print AA $1;
+  } elsif (m!^\+\+\+\sb/(.*)!) {
+    print BB $1;
+  } elsif (/^@@/) {
+    print AA "\n\n$_";
+    print BB "\n\n$_";
+  } elsif (/^-(.*)/) {
+    for $a (split /\s+/, $1) {
+      print AA "$a\n";
+    }
+  } elsif (/^\+(.*)/) {
+    for $a (split /\s+/, $1) {
+      print BB "$a\n";
+    }
+  }
+}
+print AA "\n";
+print BB "\n";
+close BB;
+close AA;
+
+print `wdiff /tmp/local /tmp/remote`;
+unlink '/tmp/local';
+unlink '/tmp/remote';
+
