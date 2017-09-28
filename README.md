@@ -34,9 +34,11 @@ w:
 
 g:
 - Find instances of token in corpus (including as substrings of other words)
+  `g woord`
 
 ge:
 - Find instances of word in corpus (this excludes substring word matches)
+  `ge exclu`
 
 gl:
 - `g 'something' | gl` ~ `grep -ilr something . `
@@ -48,7 +50,7 @@ rs:
 
 r:
 - Replace token with correction:
-  r woord word
+  `r woord word`
 
 s:
 - Commit a spelling fix:
@@ -69,6 +71,7 @@ dn:
 hesort:
 - Sort spelling commits:
   `EDITOR=hesort hg histedit ignore`
+  `EDITOR=hesort hg histedit -r 'spelling % ignore'`
 
 hgfileexts:
 - Report file extensions in repository
