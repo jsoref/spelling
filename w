@@ -7,7 +7,7 @@
 
 # originally this was a dict of all words
 # but sorting it overflowed
-%a = ();
+%letter_map = ();
 # now we have a dict per letter
 
 # read all input
@@ -18,72 +18,73 @@ while (<>) {
   s/[^a-zA-Z']+/ /g;
   while (s/([A-Z]{2,})([A-Z][a-z]{2,})/ $1 $2 /g) {}
   while (s/([a-z']+)([A-Z])/$1 $2/g) {}
-  for $x (split /\s+/, $_) {
-    $x =~ s/^'+(.*)/$1/;
-    $x =~ s/(.*)'+$/$1/;
-    next unless $x =~ /./;
-    my $k = lc $x;
-    $k =~ s/'[sd]$//;
-    my $c = substr $k, 0, 1;
-    $a{$c} = () unless defined $a{$c};
-    my %l = ();
-    %l = %{$a{$c}{$k}} if defined $a{$c}{$k};
-    $l{$x} = 1;
-    $a{$c}{$k} = \%l;
+  for my $token (split /\s+/, $_) {
+    $token =~ s/^'+(.*)/$1/;
+    $token =~ s/(.*)'+$/$1/;
+    next unless $token =~ /./;
+    my $key = lc $token;
+    $key =~ s/'[sd]$//;
+    my $char = substr $key, 0, 1;
+    $letter_map{$char} = () unless defined $letter_map{$char};
+    my %word_map = ();
+    %word_map = %{$letter_map{$char}{$key}} if defined $letter_map{$char}{$key};
+    $word_map{$token} = 1;
+    $letter_map{$char}{$key} = \%word_map;
   }
 }
 # group related words
-for my $c (sort keys %a) {
-  for my $s (sort keys($a{$c})) {
-    my $k = $s;
-    if ($k =~ /.s$/) {
-      if ($k =~ /ies$/) {
-        $k =~ s/ies$/y/;
+for my $char (sort keys %letter_map) {
+  for my $plural_key (sort keys($letter_map{$char})) {
+    my $key = $plural_key;
+    if ($key =~ /.s$/) {
+      if ($key =~ /ies$/) {
+        $key =~ s/ies$/y/;
       } else {
-        $k =~ s/s$//;
+        $key =~ s/s$//;
       }
-    } elsif ($k =~ /.[^aeiou]ed$/) {
-      $k =~ s/ed$//;
+    } elsif ($key =~ /.[^aeiou]ed$/) {
+      $key =~ s/ed$//;
     } else {
       next;
     }
-    next unless defined $a{$c}{$k};
-    my %l = %{$a{$c}{$k}};
-    for $w (keys($a{$c}{$s})) {
-      $l{$w} = 1;
+    next unless defined $letter_map{$char}{$key};
+    my %word_map = %{$letter_map{$char}{$key}};
+    for $word (keys($letter_map{$char}{$plural_key})) {
+      $word_map{$word} = 1;
     }
-    $a{$c}{$k} = \%l;
-    delete $a{$c}{$s};
+    $letter_map{$char}{$key} = \%word_map;
+    delete $letter_map{$char}{$plural_key};
   }
 }
 # exclude dictionary words
 open DICT, '<', '/usr/share/dict/words';
-while ($w = <DICT>) {
-  chomp $w;
-  my $lw = lc $w;
-  my $c = substr $lw, 0, 1;
-  next unless defined $a{$c}{$lw};
-  delete $a{$c}{$w}; 
-  next if $lw eq $w;
-  my %l = %{$a{$c}{$lw}}; 
-  delete $l{$w};
-  if (%l) {
-    $a{$c}{$lw} = \%l;
+while ($word = <DICT>) {
+  chomp $word;
+  my $lower_word = lc $word;
+  my $char = substr $lower_word, 0, 1;
+  next unless defined $letter_map{$char}{$lower_word};
+  delete $letter_map{$char}{$word};
+  next if $lower_word eq $word;
+  my %word_map = %{$letter_map{$char}{$lower_word}};
+  delete $word_map{$word};
+  if (%word_map) {
+    $letter_map{$char}{$lower_word} = \%word_map;
   } else {
-    delete $a{$c}{$lw};
+    delete $letter_map{$char}{$lower_word};
   }
 }
 close DICT;
 # display the remainder
-for my $c (sort keys %a) {
-  for $k (sort keys($a{$c})) {
-    my %l = %{$a{$c}{$k}};
-    my @w = keys(%l);
-    if (scalar(@w) > 1) {
-      print $k." (".(join ", ", sort { length($a) <=> length($b) || $a cmp $b } @w).")";
+for my $char (sort keys %letter_map) {
+  for $key (sort keys($letter_map{$char})) {
+    my %word_map = %{$letter_map{$char}{$key}};
+    my @words = keys(%word_map);
+    if (scalar(@words) > 1) {
+      print $key." (".(join ", ", sort { length($a) <=> length($b) || $a cmp $b } @words).")";
     } else {
-      print $w[0];
+      print $words[0];
     }
     print "\n";
   }
 }
+
