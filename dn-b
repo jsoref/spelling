@@ -1,4 +1,4 @@
-#!/bin/perl -n
+#!/usr/bin/perl -nw
 # ~/bin/dn
 # parse diff output and return only the content that was not added
 #

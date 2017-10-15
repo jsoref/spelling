@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 # ~/bin/w
 # Search for potentially misspelled words
 # Output is:
