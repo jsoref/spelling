@@ -1,8 +1,10 @@
 #!/bin/sh
 g=$1
 if [ ! -z "$g" ]; then
-shift
-f=$1
-shift
-grep -a $f -ir "$g" * | perl -ne "next unless /(?:^|[^a-z])$g(?:[^a-z]|$)/; print" |grep --color "$g"
+  shift
+  f=$1
+  shift
+  grep -a $f -ir "$g" * |
+    perl -ne "next unless /(?:^|[^a-z])$g(?:[^a-z]|$)/; print" |
+    grep --color "$g"
 fi
