@@ -1,0 +1,13 @@
+#!/bin/sh
+# ~/bin/wreview
+# See potentially misspelled words highlighted in context
+# Output is:
+# -- file
+# sentence with *misspellled* word
+# These words: *WOORD*, *Woord*, *woord*, has too many o's
+# When one's *woord's* have too many o's...
+
+for a in "$@"; do
+  echo -- "$a"
+  egrep --color=always -E $(w $a|tr "(,)'" '  .'|xargs echo|tr ' ' '|') $a
+done|less -r
