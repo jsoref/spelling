@@ -20,7 +20,7 @@ while (<>) {
   while (s/([a-z']+)([A-Z])/$1 $2/g) {}
   for my $token (split /\s+/, $_) {
     $token =~ s/^'+(.*)/$1/;
-    $token =~ s/(.*)'+$/$1/;
+    $token =~ s/(.*?)'+$/$1/;
     next unless $token =~ /./;
     my $key = lc $token;
     $key =~ s/'[sd]$//;
