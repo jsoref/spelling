@@ -80,6 +80,10 @@ hgfilesample:
 - Run `less` with one file for each file type from `hgfileexts`
 - Use this to identify binary file types to be excluded
 
+hgmv:
+- Rename files:
+  `hgmv Javascript JavaScript`
+
 wreview:
 - See potentially misspelled words highlighted from each file
   `wreview FILE`
