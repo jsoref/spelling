@@ -73,6 +73,10 @@ hesort:
   `EDITOR=hesort hg histedit ignore`
   `EDITOR=hesort hg histedit -r 'spelling % ignore'`
 
+chore-spelling:
+- Prefix spelling: commits with chore:
+  `chore-spelling 'spelling % master'
+
 hgfileexts:
 - Report file extensions in repository
 
