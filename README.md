@@ -12,20 +12,20 @@ script / symlink that runs `git` w/ minimal effort.
 
 f:
 - Finds potentially misspelled words in a repository/directory:
-  `f repository`
+  * `f repository`
 - Runs `w` on files (excludes repositories / certain file types)
 
 fchurn:
 - Find newly misspelled words in a repository since the last run:
-  `fchurn repository`
+  * `fchurn repository`
 
 dchurn:
 - Find newly misspelled words in a diff:
-  `d|dchurn`
+  * `d|dchurn`
 
 rediff:
 - Find word changes from a diff:
-  `d -U0 -c.|rediff`
+  * `d -U0 -c.|rediff`
 
 w:
 - Generate a list of tokens that might be misspelled
@@ -33,49 +33,50 @@ w:
   your head) to decide what's actually a misspelling
 
 g:
-- Find instances of token in corpus (including as substrings of other words)
-  `g woord`
+- Find instances of token in corpus (including as substrings of other words):
+  * `g woord`
 
 ge:
-- Find instances of word in corpus (this excludes substring word matches)
-  `ge exclu`
+- Find instances of word in corpus (this excludes substring word matches):
+  * `ge exclu`
 
 gl:
-- `g 'something' | gl` ~ `grep -ilr something . `
+- Extract filenames from file prefixed grep output:
+  * `g 'something' | gl` ~ `grep -ilr something . `
 
 rs:
 - Replace and commit spelling fix:
-  `rs teh the` ~ `r teh the; s the`
-  `rs 'thi s' 'this ' this` ~ `r 'thi s' 'this '; s this`
+  * `rs teh the` ~ `r teh the; s the`
+  * `rs 'thi s' 'this ' this` ~ `r 'thi s' 'this '; s this`
 
 r:
 - Replace token with correction:
-  `r woord word`
+  * `r woord word`
 
 s:
 - Commit a spelling fix:
-  `s word`
+  * `s word`
 
 b:
 - Commit a brand fix:
-  `b JavaScript`
+  * `b JavaScript`
 
 d:
 - Diff:
-  `d -U0 -c.`
+  * `d -U0 -c.`
 
 dn:
 - Select only new lines from diff output:
-  `d | dn | w`
+  * `d | dn | w`
 
 hesort:
 - Sort spelling commits:
-  `EDITOR=hesort hg histedit ignore`
-  `EDITOR=hesort hg histedit -r 'spelling % ignore'`
+  * `EDITOR=hesort hg histedit ignore`
+  * `EDITOR=hesort hg histedit -r 'spelling % ignore'`
 
 chore-spelling:
 - Prefix spelling: commits with chore:
-  `chore-spelling 'spelling % master'
+  * `chore-spelling 'spelling % master'`
 
 hgfileexts:
 - Report file extensions in repository
@@ -86,11 +87,11 @@ hgfilesample:
 
 hgmv:
 - Rename files:
-  `hgmv Javascript JavaScript`
+  * `hgmv Javascript JavaScript`
 
 wreview:
-- See potentially misspelled words highlighted from each file
-  `wreview FILE`
+- See potentially misspelled words highlighted from each file:
+  * `wreview FILE`
 
 ## Prerequisites
 * find
