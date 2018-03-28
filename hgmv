@@ -1,2 +1,2 @@
 #!/bin/sh
-for a in `hg locate "*$1*"`; do hg mv $a `echo $a | perl -pne "s/$1/$2/"`; done
+for a in `hg locate "*$1*"; hg locate | perl -ne 's!/[^/]+$!\n!;next unless /'$1'/;print'|uniq`; do hg mv $a `echo $a | perl -pne "s/$1/$2/"`; done
