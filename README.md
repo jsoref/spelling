@@ -195,6 +195,11 @@ popd
 fchurn repository
 ```
 
+## CI Integration
+It is possible to integrate this with your favorite CI. I'm slowly working on this.
+My initial work was done for the [checkstyle](https://github.com/checkstyle/checkstyle/) project.
+See the [Travis hook](https://github.com/checkstyle/checkstyle/blob/master/.ci/test-spelling-unknown-words.sh).
+
 ## License
 
 MIT
