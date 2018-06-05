@@ -196,5 +196,5 @@ fchurn repository
 ```
 
 ## License
-    
+
 MIT
