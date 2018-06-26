@@ -1,5 +1,5 @@
 #!/bin/sh
-# ~/bin/wreview
+# ~/bin/wreview FILES
 # See potentially misspelled words highlighted in context
 # Output is:
 # -- file
