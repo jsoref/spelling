@@ -46,12 +46,12 @@ gl:
 
 rs:
 - Replace and commit spelling fix:
-  * `rs teh the` ~ `r teh the; s the`
-  * `rs 'thi s' 'this ' this` ~ `r 'thi s' 'this '; s this`
+  * `rs teh the` ~ `r 's{teh}{the}' $(g teh -l); s the`
+  * `rs 'thi s' 'this ' this` ~ `r 's{thi s}{this }' $(g 'thi s' -l); s this`
 
 r:
-- Replace token with correction:
-  * `r woord word`
+- Run replace token with correction on FILES:
+  * `r s/woord/word/ FILES`
 
 s:
 - Commit a spelling fix:
