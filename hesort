@@ -14,7 +14,7 @@
 #               this hasn't been a problem)
 #   [perl]  1. remove the prefixes inserted by the previous perl
 #              (technically this could mess up if the commit message has
-#               an underscore, stuff, andpick -- this hasn't been a problem)
+#               an underscore (`_`), stuff, `cherrypick` -- this hasn't been a problem)
 #           2. if the previous correction was the same as the current,
 #              replace pick with roll
 cat $1 |\
