@@ -34,7 +34,7 @@ while (<>) {
 }
 # group related words
 for my $char (sort keys %letter_map) {
-  for my $plural_key (sort keys($letter_map{$char})) {
+  for my $plural_key (sort keys(%{$letter_map{$char}})) {
     my $key = $plural_key;
     if ($key =~ /.s$/) {
       if ($key =~ /ies$/) {
@@ -49,7 +49,7 @@ for my $char (sort keys %letter_map) {
     }
     next unless defined $letter_map{$char}{$key};
     my %word_map = %{$letter_map{$char}{$key}};
-    for $word (keys($letter_map{$char}{$plural_key})) {
+    for $word (keys(%{$letter_map{$char}{$plural_key}})) {
       $word_map{$word} = 1;
     }
     $letter_map{$char}{$key} = \%word_map;
@@ -76,7 +76,7 @@ while ($word = <DICT>) {
 close DICT;
 # display the remainder
 for my $char (sort keys %letter_map) {
-  for $key (sort keys($letter_map{$char})) {
+  for $key (sort keys(%{$letter_map{$char}})) {
     my %word_map = %{$letter_map{$char}{$key}};
     my @words = keys(%word_map);
     if (scalar(@words) > 1) {
