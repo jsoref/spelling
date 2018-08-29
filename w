@@ -5,6 +5,10 @@
 # misspellled
 # woord (WOORD, Woord, woord, woord's)
 
+use File::Basename;
+use Cwd 'abs_path';
+
+my $dirname = dirname(abs_path(__FILE__));
 # originally this was a dict of all words
 # but sorting it overflowed
 %letter_map = ();
@@ -57,7 +61,9 @@ for my $char (sort keys %letter_map) {
   }
 }
 # exclude dictionary words
-open DICT, '<', '/usr/share/dict/words';
+my $dict = "$dirname/words";
+$dict = '/usr/share/dict/words' unless -e $dict;
+open DICT, '<', $dict;
 while ($word = <DICT>) {
   chomp $word;
   my $lower_word = lc $word;
