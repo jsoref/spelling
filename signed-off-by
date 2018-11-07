@@ -1,0 +1,12 @@
+#!/bin/sh
+# https://conventionalcommits.org/
+# takes a revset and appends "$SIGNED_OFF_BY" to each spelling commit.
+if [ "$1" = "message" ]; then
+  grep "$SIGNED_OFF_BY" $2 > /dev/null ||
+  echo "$SIGNED_OFF_BY" >> $2
+elif [ "$1" = "plan" ]; then
+  perl -pi -e 'unless ($second) { s/^pick/edit/; $second=1; } else { s/^pick/mess/ }' $2
+else
+  EDITOR="$0 plan" hg histedit "$@"
+  EDITOR="$0 message" hg histedit --cont
+fi

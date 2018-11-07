@@ -78,6 +78,10 @@ chore-spelling:
 - Prefix spelling: commits with chore:
   * `chore-spelling 'spelling % master'`
 
+signed-off-by:
+- Add 'signed-off-by: user@address':
+  * `SIGNED_OFF_BY="Signed-off-by: user <user@example.com>" signed-off-by 'spelling % master'`
+
 hgfileexts:
 - Report file extensions in repository
 
