@@ -89,6 +89,9 @@ hgmv:
 - Rename files:
   * `hgmv Javascript JavaScript`
 
+hgrmjunk:
+- Delete files that should not be spellchecked
+
 wreview:
 - See potentially misspelled words highlighted from each file:
   * `wreview FILE`
@@ -135,6 +138,8 @@ hg bookmark ignore
 # exclude content that shouldn't be spellchecked
 hg rm vendor ...
 # upstream content
+hgrmjunk
+# various file types including pictures
 hgfilesample
 hg rm `hg locate '*.dmg'` ...
 # binary content
