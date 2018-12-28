@@ -96,6 +96,10 @@ hgmv:
 hgrmjunk:
 - Delete files that should not be spellchecked
 
+wdiff:
+- Compare misspellings in two files:
+  * `wdiff file.orig file`
+
 wreview:
 - See potentially misspelled words highlighted from each file:
   * `wreview FILE`
