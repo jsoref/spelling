@@ -6,6 +6,10 @@
 # this avoids accidentally scribbling over .hg/ or similar
 old=$1
 new=$2
+if [ "$new" = "$HOME" ]; then
+  echo 'Did you accidentally run `rs '$old' ~`?'
+  exit 9
+fi
 shift
 shift
 if [ -z "$new" ]; then
