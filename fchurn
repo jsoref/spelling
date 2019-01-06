@@ -1,4 +1,5 @@
 #!/bin/sh
-[ -e $1.words ] && mv $1.words $1.old
-f $1 > $1.words
-[ -e $1.old ] && diff -U0 $1.old $1.words|dn|w
+repo=$(echo $1 |sed -e 's#/$##')
+[ -e $repo.words ] && mv $repo.words $repo.old
+f $repo > $repo.words
+[ -e $repo.old ] && diff -U0 $repo.old $repo.words|dn|w
