@@ -14,6 +14,15 @@ my $dirname = dirname(abs_path(__FILE__));
 %letter_map = ();
 # now we have a dict per letter
 
+# skip files that don't exist (including dangling symlinks)
+if (scalar @ARGV) {
+  @ARGV = grep {-r || $_ eq '-'} @ARGV;
+  unless (scalar @ARGV) {
+    print STDERR "None of the provided files are readable\n";
+    exit 1;
+  }
+}
+
 # read all input
 while (<>) {
   next unless /./;
