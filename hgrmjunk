@@ -18,6 +18,7 @@ SPECS="
 '*.jpg'
 '*.key'
 '*.lock'
+'*.lib'
 '*.map'
 '*.min.*'
 '*.pdf'
