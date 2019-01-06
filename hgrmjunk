@@ -1,4 +1,37 @@
 #!/bin/sh
 # ~/bin/hgrmjunk
 # Delete files that are generally not useful for spellchecking
-for a in '*.cer' '*.class' '*.crl' '*.crt' '*.csr' '*.dll' '*.eot' '*.exe' '*.gif' '*.gz' '*.icns' '*.ico' '*.jar' '*.jpg' '*.key' '*.lock' '*.map' '*.min.*' '*.pdf' '*.pem' '*.png' '*.sig' '*.so' '*SUMS' '*.svg' '*.tar' '*.tgz' '*.ttf' '*.xpm' '*.yml' '*.zip'; do hg rm $(hg locate $a); done 2>&1|uniq
+SPECS="
+'*.cer'
+'*.class'
+'*.crl'
+'*.crt'
+'*.csr'
+'*.dll'
+'*.eot'
+'*.exe'
+'*.gif'
+'*.gz'
+'*.icns'
+'*.ico'
+'*.jar'
+'*.jpg'
+'*.key'
+'*.lock'
+'*.map'
+'*.min.*'
+'*.pdf'
+'*.pem'
+'*.png'
+'*.sig'
+'*.so'
+'*SUMS'
+'*.svg'
+'*.tar'
+'*.tgz'
+'*.ttf'
+'*.xpm'
+'*.yml'
+'*.zip'
+"
+for a in $(eval echo $SPECS); do hg rm $(hg locate $a); done 2>&1|uniq
