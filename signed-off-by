@@ -2,8 +2,12 @@
 # https://conventionalcommits.org/
 # takes a revset and appends "$SIGNED_OFF_BY" to each spelling commit.
 if [ "$1" = "message" ]; then
-  grep "$SIGNED_OFF_BY" $2 > /dev/null ||
-  echo "$SIGNED_OFF_BY" >> $2
+  commitmsg="$2"
+  cat "$commitmsg" > test-test-test
+  if ! grep "$SIGNED_OFF_BY" "$commitmsg" > /dev/null; then
+    message="$((cat "$commitmsg" ; echo "$SIGNED_OFF_BY") | uniq)"
+    echo "$message" > "$commitmsg"
+  fi
 elif [ "$1" = "plan" ]; then
   perl -pi -e 'unless ($second) { s/^pick/edit/; $second=1; } else { s/^pick/mess/ }' $2
 else
