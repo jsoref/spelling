@@ -1,6 +1,11 @@
 #!/bin/sh
 # https://conventionalcommits.org/
 # takes a revset and appends "$SIGNED_OFF_BY" to each spelling commit.
+if [ $# -eq 0 ]; then
+  echo "SIGNED_OFF_BY='...' $0 range"
+  echo " -- initiate rewrite"
+  exit 1
+fi
 if [ "$1" = "message" ]; then
   commitmsg="$2"
   cat "$commitmsg" > test-test-test
