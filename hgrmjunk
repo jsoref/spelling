@@ -35,4 +35,4 @@ SPECS="
 '*.yml'
 '*.zip'
 "
-for a in $(eval echo $SPECS); do hg rm $(hg locate $a); done 2>&1|uniq
+for a in $(eval echo $SPECS); do hg locate -0 $a | xargs -0 hg rm; done 2>&1|uniq
