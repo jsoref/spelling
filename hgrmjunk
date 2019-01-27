@@ -21,6 +21,7 @@ SPECS="
 '*.lib'
 '*.map'
 '*.min.*'
+'*.otf'
 '*.pdf'
 '*.pem'
 '*.png'
@@ -31,8 +32,10 @@ SPECS="
 '*.tar'
 '*.tgz'
 '*.ttf'
+'*.woff*'
 '*.xpm'
 '*.yml'
 '*.zip'
+'package-lock.json'
 "
 hg locate -0 $(eval echo $SPECS)  | xargs -0 hg rm 2>&1|uniq
