@@ -41,5 +41,5 @@ SPECS="
 package-lock.json
 "
 hg locate -0 \
-$(eval echo $SPECS) \
+$(for a in $SPECS; do eval echo "$a" | perl -pne 's/([.])/\\$1/g; s/([*])/.*/g; s/(^.*$)/re:(?i)^$1\$/'; done) \
  | xargs -0 hg rm 2>&1|uniq
