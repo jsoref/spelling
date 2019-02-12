@@ -40,4 +40,6 @@ SPECS="
 .DS_Store
 package-lock.json
 "
-hg locate -0 $(eval echo $SPECS)  | xargs -0 hg rm 2>&1|uniq
+hg locate -0 \
+$(eval echo $SPECS) \
+ | xargs -0 hg rm 2>&1|uniq
