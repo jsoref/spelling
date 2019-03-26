@@ -11,6 +11,7 @@ SPECS="
 '*.eot'
 '*.exe'
 '*.gif'
+'*.graffle'
 '*.gz'
 '*.icns'
 '*.ico'
