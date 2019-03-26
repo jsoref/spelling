@@ -26,6 +26,11 @@ case "${unameOut}" in
     *)       usenull=-Z;;
 esac
 
-grep $usenull -l -ir "$old" `find . -mindepth 1 -maxdepth 1 -type f -name '.*'` * |xargs -0 -I '<>' ~/bin/r "s{$old}{$new}g" "<>"
+(hg root >/dev/null &&
+  hg files 'set:not symlink() and ./**' -0 ||
+  find . -mindepth 1 -maxdepth 1 -type f -name '.*' -0
+) |
+  xargs -0 grep $usenull -l -i "$old" |
+  xargs -0 -I '<>' ~/bin/r "s{$old}{$new}g" "<>"
 ~/bin/s "$word"
 #$(echo $new|tr A-Z a-z)
