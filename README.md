@@ -152,7 +152,7 @@ wreview:
 1. Switch to web browser (focussing URL Bar or a text editor).
 1. (paste)`acecss`
 1. Get suggested corrected spelling (e.g. down arrow).
-1. Copy 
+1. Copy
 1. Switch back to edit stream terminal.
 1. Paste:
   `rs acecss access` ↵
@@ -198,7 +198,7 @@ rs ADDESS ADDRESS
 EDITOR=hesort hg histedit ignore
 # collapse the fixes
 ...
-r Javascript JavaScript 
+r Javascript JavaScript
 b JavaScript
 # tag branding fix differently (it will sort elsewhere)
 ...
