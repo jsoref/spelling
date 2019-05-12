@@ -198,7 +198,7 @@ rs ADDESS ADDRESS
 EDITOR=hesort hg histedit ignore
 # collapse the fixes
 ...
-r Javascript JavaScript
+r s/Javascript/JavaScript/g $(g Javascript -l)
 b JavaScript
 # tag branding fix differently (it will sort elsewhere)
 ...
