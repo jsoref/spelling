@@ -1,6 +1,27 @@
 # Spelling tools
 
 ## Overview
+
+Everyone makes typos. This includes people writing documentation and comments,
+but it also includes programmers naming variables, functions, apis, classes,
+and filenames.
+
+Often, programmers will use `InitialCapitalization`, `camelCase`,
+`ALL_CAPS`, or 'IDLCase' when naming their things. When they do this, it makes
+it much harder for naive spelling tools to recognize misspellings, and as such,
+with a really high false-positive rate, people don't tend to enable spellchecking
+at all.
+
+This repository's tools are capable of tolerating all of those variations.
+Specifically, `w` understands enough about how programmers name things that it
+can split the above conventions into word-like things for checking against a
+dictionary.
+
+See the [workflows](#workflows) section for how these tools are usually used
+together.
+See the [tools](#tools) section for a description of each tool and sample usage.
+
+## Path Overview
 These tools are designed to live in `~/bin`, I haven't spent the time to have
 them fish for their own locations. I'm not a huge fan of `bash` and would rather
 use either portable `sh` or `perl`.
@@ -115,7 +136,9 @@ wreview:
 * uniq
 * xargs
 
-## Short workflow
+## Workflows
+
+### Short workflow
 
 * Browse output of `f` in one window (word list).
 * Have a Terminal ready for commits (edit stream).
@@ -135,7 +158,7 @@ wreview:
   `rs acecss access` ↵
 1. Switch back to tokenlist window and repeat process.
 
-## Detailed workflow
+### Detailed workflow
 
 I tend to do:
 ```sh
@@ -190,7 +213,7 @@ hg rebase -r 'spelling % ignore' -d master
 # exclude the ignore commit(s) and return to master
 ```
 
-## Dev workflow
+### Dev workflow
 If you're reviewing patches:
 ```sh
 fchurn repository
