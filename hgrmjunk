@@ -2,6 +2,7 @@
 # ~/bin/hgrmjunk
 # Delete files that are generally not useful for spellchecking
 SPECS="
+'*.ai'
 '*.cer'
 '*.class'
 '*.crl'
