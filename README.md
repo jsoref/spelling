@@ -210,7 +210,7 @@ b JavaScript
 # tag branding fix differently (it will sort elsewhere)
 ...
 ge thi
-r 'thi s' 'this '
+r 's/thi s/this /g' $(ge thi|gl)
 d
 # verify the change didn't mess something else up
 s this
