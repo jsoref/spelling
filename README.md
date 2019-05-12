@@ -198,6 +198,13 @@ rs ADDESS ADDRESS
 EDITOR=hesort hg histedit ignore
 # collapse the fixes
 ...
+# JavaScirpt
+g Scirpt
+rs Scirpt Script
+# JaveScript
+g Jave
+rs Jave Java
+g Javascript
 r s/Javascript/JavaScript/g $(g Javascript -l)
 b JavaScript
 # tag branding fix differently (it will sort elsewhere)
