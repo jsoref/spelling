@@ -138,6 +138,31 @@ hgrmjunk:
 
 - Delete files that should not be spellchecked
 
+convertpatch-to:
+
+- Convert existing Mercurial commits into other commands
+- this is mostly used for transplanting or replaying a common set of replacements against another repository:
+
+    ```
+    # working directory is terraform-provider-google
+    # sibling directory is magic-modules
+    # Input is a sequence of commits here:
+    #   https://github.com/terraform-providers/terraform-provider-google/pull/4235
+    # Output is a sequence of commits here:
+    #   https://github.com/GoogleCloudPlatform/magic-modules/pull/2183
+    # This gets a list of commits (in ascending order) on the spelling branch starting past the master commit
+    for a in $(hg log -T '{rev} ' -r spelling%master); do
+      # this line calls convertpatch-to and asks for an `rs` command
+      X="$(MODE=rs convertpatch-to -c$a)";
+      (
+        cd ../magic-modules/;
+        # this line runs that command in the magic-modules directory
+        sh -c "$X"
+      ) 2>&1
+    done |perl -ne 'next if /^Required ruby|^To install do/;print'
+    # the last perl is because `magic-modules/.ruby-version` triggers annoying warnings that I don't care about
+    ```
+
 wdiff:
 
 - Compare misspellings in two files:
