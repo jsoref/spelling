@@ -32,96 +32,119 @@ script / symlink that runs `git` w/ minimal effort.
 ## Tools
 
 f:
+
 - Finds potentially misspelled words in a repository/directory:
   * `f repository`
 - Runs `w` on files (excludes repositories / certain file types)
 
 fchurn:
+
 - Find newly misspelled words in a repository since the last run:
   * `fchurn repository`
 
 dchurn:
+
 - Find newly misspelled words in a diff:
   * `d|dchurn`
 
 rediff:
+
 - Find word changes from a diff:
   * `d -U0 -c.|rediff`
 
 w:
+
 - Generate a list of tokens that might be misspelled
 - You will need to feed this to another tool (`Google Suggest`, `MS Word`, ..., or
   your head) to decide what's actually a misspelling
 
 g:
+
 - Find instances of token in corpus (including as substrings of other words):
   * `g woord`
 
 ge:
+
 - Find instances of word in corpus (this excludes substring word matches):
   * `ge exclu`
 
 gl:
+
 - Extract filenames from file prefixed grep output:
   * `g 'something' | gl` ~ `grep -ilr something . `
 
 rs:
+
 - Replace and commit spelling fix:
   * `rs teh the` ~ `r 's{teh}{the}' $(g teh -l); s the`
   * `rs 'thi s' 'this ' this` ~ `r 's{thi s}{this }' $(g 'thi s' -l); s this`
 
 r:
+
 - Run replace token with correction on FILES:
   * `r s/woord/word/ FILES`
 
 s:
+
 - Commit a spelling fix:
   * `s word`
 
 b:
+
 - Commit a brand fix:
   * `b JavaScript`
 
 d:
+
 - Diff:
   * `d -U0 -c.`
 
 dn:
+
 - Select only new lines from diff output:
   * `d | dn | w`
 
 hesort:
+
 - Sort spelling commits:
   * `EDITOR=hesort hg histedit ignore`
   * `EDITOR=hesort hg histedit -r 'spelling % ignore'`
 
 chore-spelling:
+
 - Prefix spelling: commits with chore:
   * `chore-spelling 'spelling % master'`
 
 signed-off-by:
+
 - Add 'signed-off-by: user@address':
   * `SIGNED_OFF_BY="Signed-off-by: user <user@example.com>" signed-off-by 'spelling % master'`
 
 hgfileexts:
+
 - Report file extensions in repository
 
 hgfilesample:
+
 - Run `less` with one file for each file type from `hgfileexts`
 - Use this to identify binary file types to be excluded
 
 hgmv:
+
 - Rename files:
   * `hgmv Javascript JavaScript`
 
 hgrmjunk:
+
 - Delete files that should not be spellchecked
 
 wdiff:
+
 - Compare misspellings in two files:
   * `wdiff file.orig file`
 
 wreview:
+
 - See potentially misspelled words highlighted from each file:
   * `wreview FILE`
 
@@ -161,6 +184,7 @@ wreview:
 ### Detailed workflow
 
 I tend to do:
+
 ```sh
 hg clone git@github.com:jsoref/spelling.git
 # get a repository to work on
@@ -222,6 +246,7 @@ hg rebase -r 'spelling % ignore' -d master
 
 ### Dev workflow
 If you're reviewing patches:
+
 ```sh
 fchurn repository
 patch -d repository -p1 < proposed-commit
@@ -229,6 +254,7 @@ fchurn repository
 ```
 
 If you're trying to catch typos before you commit:
+
 ```sh
 fchurn repository
 pushd repository
