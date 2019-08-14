@@ -7,7 +7,7 @@ but it also includes programmers naming variables, functions, apis, classes,
 and filenames.
 
 Often, programmers will use `InitialCapitalization`, `camelCase`,
-`ALL_CAPS`, or 'IDLCase' when naming their things. When they do this, it makes
+`ALL_CAPS`, or `IDLCase` when naming their things. When they do this, it makes
 it much harder for naive spelling tools to recognize misspellings, and as such,
 with a really high false-positive rate, people don't tend to enable spellchecking
 at all.
