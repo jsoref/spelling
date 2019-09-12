@@ -1,2 +1,0 @@
-#!/bin/sh
-hg locate |perl -ne 's!.*/!!;next unless s!.*\.!!; print'|sort -u
