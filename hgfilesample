@@ -1,2 +1,0 @@
-#!/bin/sh
-less $(for a in `hgfileexts`; do hg locate "*.$a"|xargs -n1 ls -d 2>/dev/null |head -1; done)
