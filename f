@@ -2,6 +2,9 @@
 # ~/bin/f
 # Run ~/bin/w [find possibly misspelled words] on argument or current directory items (excluding hidden items)
 # This could be switched to include hidden items...
+dir=$(dirname -- "$0")
+dir=$(realpath -- "$dir" || { cd "$dir" && pwd ;})
+
 if [ -n "$1" ]; then
   where="$1"
 else
@@ -43,4 +46,4 @@ Q="'"
 D1='$1'
 pDIR=`echo $DIR|perl -pne "s/(\\S+)/-name $D1 -prune -o /g"`
 pEXT=`echo $EXT|perl -pne "s/(\\S+)/-iname $Q*.$D1$Q -prune -o /g"`
-find $where $pDIR $pEXT  -type f -print0 | xargs -0 ~/bin/w | ~/bin/w 2>/dev/null
+find $where $pDIR $pEXT  -type f -print0 | xargs -0 "${dir}/w" | "${dir}/w" 2>/dev/null
