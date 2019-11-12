@@ -21,8 +21,8 @@ case $MODE in
     SUFFIX='/g;\n'
   ;;
   rs|*)
-    PREFIX='rs "'
-    INFIX='" "'
+    PREFIX='rs "\\b'
+    INFIX='\\b" "'
     SUFFIX='"\n'
   ;;
 esac
