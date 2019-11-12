@@ -36,6 +36,7 @@ if [ ! -z "$1" ]; then
 fi
 
 (d --color always $DIFF -U0|\
+    perl -ne '$skip = 1 if /\@\@ -\d+,([^1]|1[^ ])|\@\@ -\d+,\d+ \+\d+,([^1]|1[^ ])/; $skip = 0 if /\@\@ -\d+,1 \+\d+,1 /; next if $skip; print' |\
     perl -ne 'next unless /^\x1b\[0;3[12]m/;s/.*?(\x1b\[0;3[12];1;4m)/$1/g;print'|\
     perl -pne 's/\x1b\[0m.*//' |\
     perl -pne 's!\x1b\[0;31;1;4m(.*)\n!'"$PREFIX"'$1!;s!\x1b\[0;32;1;4m(.*)\n!'"$INFIX"'$1'"$SUFFIX"'!;'
