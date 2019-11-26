@@ -46,4 +46,4 @@ hg locate -0 \
 $(for a in $SPECS; do eval echo "$a" | perl -pne 's/([.])/\\$1/g; s/([*])/.*/g; s/(^.*$)/re:(?i)^$1\$/'; done) \
  | xargs -0 hg rm 2>&1|uniq
 hg locate -0 \
- | xargs -0 grep -s -l data: | xargs r 's{"data:[a-zA-Z=;,/0-9+]+"}{"data:,"}g;'"s{'data:[a-zA-Z=;,/0-9+]+'}{'data:,'};"
+ | xargs -0 grep --null -s -l data: | xargs -0 r 's{"data:[a-zA-Z=;,/0-9+]+"}{"data:,"}g;'"s{'data:[a-zA-Z=;,/0-9+]+'}{'data:,'};"
