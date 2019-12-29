@@ -41,6 +41,8 @@ SPECS="
 '*.yml'
 '*.zip'
 .DS_Store
+go.sum
+go.mod
 package-lock.json
 "
 hg locate -0 \
