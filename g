@@ -6,5 +6,5 @@ f=$1
 if [ ! -z "$f" ]; then
 shift
 fi
-grep --color $f -ir "$g" -- *
+grep --color $f -ir -- "$g" *
 fi
