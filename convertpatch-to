@@ -6,7 +6,7 @@
 #   s/teh/the/g
 # rs teh the
 # g teh; echo the
-DIFF="-r master -r spelling"
+DIFF="${DIFF:--r master -r spelling}"
 case $MODE in
   go)
     # go stands for `grep`(g) + `original`
