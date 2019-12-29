@@ -35,6 +35,7 @@ SPECS="
 '*.tgz'
 '*.ttf'
 '*.woff*'
+'*.xcf'
 '*.xls*'
 '*.xpm'
 '*.yml'
