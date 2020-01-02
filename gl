@@ -1,4 +1,6 @@
 #!/bin/sh
 # ~/bin/gl
 # Run ~/bin/gl.pl
-~/bin/gl.pl | uniq
+dir=$(dirname -- "$0")
+dir=$(realpath -- "$dir" || { cd "$dir" && pwd ;})
+"$dir/gl.pl" | uniq

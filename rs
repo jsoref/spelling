@@ -4,6 +4,9 @@
 # commit: s {spelling|new}
 # currently top level hidden directories are ignored,
 # this avoids accidentally scribbling over .hg/ or similar
+dir=$(dirname -- "$0")
+dir=$(realpath -- "$dir" || { cd "$dir" && pwd ;})
+
 old=$1
 new=$2
 if [ "$new" = "$HOME" ]; then
@@ -31,6 +34,6 @@ esac
   find . -mindepth 1 -maxdepth 1 -type f -name '.*' -0
 ) |
   xargs -0 grep $usenull -l -i "$old" |
-  xargs -0 -I '<>' ~/bin/r "s{$old}{$new}g" "<>"
-~/bin/s "$word"
+  xargs -0 -I '<>' "${dir}/r" "s{$old}{$new}g" "<>"
+"${dir}/s" "$word"
 #$(echo $new|tr A-Z a-z)
