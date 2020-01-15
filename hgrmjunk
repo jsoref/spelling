@@ -3,6 +3,7 @@
 # Delete files that are generally not useful for spellchecking
 SPECS="
 '*.ai'
+'*.bmp'
 '*.cer'
 '*.class'
 '*.crl'
@@ -10,6 +11,7 @@ SPECS="
 '*.csr'
 '*.dll'
 '*.eot'
+'*.eps'
 '*.exe'
 '*.gif'
 '*.graffle'
@@ -17,6 +19,7 @@ SPECS="
 '*.icns'
 '*.ico'
 '*.jar'
+'*.jpeg'
 '*.jpg'
 '*.key'
 '*.lock'
@@ -31,6 +34,7 @@ SPECS="
 '*.so'
 '*SUMS'
 '*.svg'
+'*.svgz'
 '*.tar'
 '*.tgz'
 '*.ttf'
