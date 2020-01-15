@@ -1,7 +1,8 @@
 #!/bin/sh
 g=$1
-if [ ! -z "$g" ]; then
+[ -z "$g" ] && exit
 shift
+
 f=$1
 if [ ! -z "$f" ]; then
 shift
