@@ -26,6 +26,8 @@ SPECS="
 '*.lib'
 '*.map'
 '*.min.*'
+'*.mp3'
+'*.mp4'
 '*.otf'
 '*.pdf'
 '*.pem'
