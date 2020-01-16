@@ -1,0 +1,20 @@
+#!/usr/bin/perl
+open FILE, "<", "ignore-me";
+$f=0;
+$o="";
+$n="";
+while (<>) {
+  if (/^--- (\S+)\s.*/) {
+    $o=$_;
+  } elsif (/^\+\+\+ (\S+)\s.*/) {
+    $n=$_;
+  } elsif (/^\@\@ /) {
+    close FILE;
+    ++$f;
+    open FILE, ">", "$f.patch";
+    print FILE "$o$n";
+    print FILE;
+  } else {
+    print FILE;
+  }
+}

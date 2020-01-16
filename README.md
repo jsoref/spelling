@@ -120,6 +120,10 @@ signed-off-by:
 - Add 'signed-off-by: user@address':
   * `SIGNED_OFF_BY="Signed-off-by: user <user@example.com>" signed-off-by 'spelling % master'`
 
+splitter:
+
+- Convert patches (standard input or arguments) into numbered patch files
+
 hgfileexts:
 
 - Report file extensions in repository
