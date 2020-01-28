@@ -1,6 +1,11 @@
 #!/bin/sh
 # ~/bin/hgrmjunk
 # Delete files that are generally not useful for spellchecking
+
+find * -type d -name vendor -print0 \
+ | xargs -0 hg rm 2>/dev/null >/dev/null
+hg files 'set:symlink()' -0|xargs -0 hg rm
+
 SPECS="
 '*.ai'
 '*.bmp'
@@ -56,6 +61,3 @@ $(for a in $SPECS; do eval echo "$a" | perl -pne 'next unless /\*/; s/([.])/\\$1
  | xargs -0 hg rm 2>&1|uniq
 hg locate -0 \
  | xargs -0 grep --null -s -l data: | xargs -0 r 's{"data:[a-zA-Z=;,/0-9+]+"}{"data:,"}g;'"s{'data:[a-zA-Z=;,/0-9+]+'}{'data:,'};"
-find * -type d -name vendor -print0 \
- | xargs -0 hg rm 2>/dev/null >/dev/null
-hg files 'set:symlink()' -0|xargs -0 hg rm
