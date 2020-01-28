@@ -58,4 +58,4 @@ hg locate -0 \
  | xargs -0 grep --null -s -l data: | xargs -0 r 's{"data:[a-zA-Z=;,/0-9+]+"}{"data:,"}g;'"s{'data:[a-zA-Z=;,/0-9+]+'}{'data:,'};"
 find * -type d -name vendor -print0 \
  | xargs -0 hg rm 2>/dev/null >/dev/null
-find . -type l ! -exec test -e {} \; -delete
+hg files 'set:symlink()' -0|xargs -0 hg rm
