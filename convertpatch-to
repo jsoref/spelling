@@ -50,6 +50,7 @@ while (<DIFF>) {
         $skip=0;
         next;
     }
+    $skip=1 if /$boldred.*$boldred|$boldgrn.*$boldgrn/;
     next if $skip;
     next unless /^$escape;3[12]m/;
     next unless s/.*?($escape;3[12];1;4m)/$1/g;
