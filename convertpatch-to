@@ -23,7 +23,7 @@ case $MODE in
   rs|*)
     PREFIX='rs "\\b'
     INFIX='\\b" "'
-    SUFFIX='"\n'
+    SUFFIX='";\n'
   ;;
 esac
 
