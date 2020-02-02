@@ -37,15 +37,16 @@ my (@pairs, $skip, $a, $b);
 my $escape='\x1b\[0';
 my $boldred=$escape.';31;1;4m';
 my $boldgrn=$escape.';32;1;4m';
+my $purple=$escape.';35m';
 my $black=$escape.'m';
 
 open DIFF, "d --color always --no-show-function $diff -U0|";
 while (<DIFF>) {
-    if (/\@\@ -\d+,([^1]|1[^ ])|\@\@ -\d+,\d+ \+\d+,([^1]|1[^ ])/) {
+    if (/^$purple\@\@ -\d+,([^1]|1[^ ])|\@\@ -\d+,\d+ \+\d+,([^1]|1[^ ])/) {
         $skip=1;
         next;
     }
-    if (/\@\@ -\d+,1 \+\d+,1 /) {
+    if (/^$purple\@\@ -\d+,1 \+\d+,1 /) {
         $skip=0;
         next;
     }
