@@ -32,7 +32,8 @@ if (scalar @ARGV) {
     $diff=join(' ', @ARGV);
 }
 
-my (@pairs, $skip, $a, $b);
+my (@pairs, $skip);
+my ($a, $b) = ('', '');
 
 my $escape='\x1b\[0';
 my $boldred=$escape.';31;1;4m';
@@ -59,7 +60,7 @@ while (<DIFF>) {
         $a=$1;
     } elsif (m!$boldgrn(.*)\n!) {
         $b=$1;
-        push @pairs, [$a, $b];
+        push @pairs, [$a, $b] if $a ne '';
         $a="";
         $b="";
     }
