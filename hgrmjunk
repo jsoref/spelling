@@ -37,6 +37,7 @@ SPECS="
 '*.pdf'
 '*.pem'
 '*.png'
+'*.psd'
 '*.sig'
 '*.so'
 '*SUMS'
