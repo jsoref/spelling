@@ -34,6 +34,11 @@ if (scalar @ARGV) {
 
 my (@pairs, $skip, $a, $b);
 
+my $escape='\x1b\[0';
+my $boldred=$escape.';31;1;4m';
+my $boldgrn=$escape.';32;1;4m';
+my $black=$escape.'m';
+
 open DIFF, "d --color always --no-show-function $diff -U0|";
 while (<DIFF>) {
     if (/\@\@ -\d+,([^1]|1[^ ])|\@\@ -\d+,\d+ \+\d+,([^1]|1[^ ])/) {
@@ -45,12 +50,12 @@ while (<DIFF>) {
         next;
     }
     next if $skip;
-    next unless /^\x1b\[0;3[12]m/;
-    next unless s/.*?(\x1b\[0;3[12];1;4m)/$1/g;
-    s/\x1b\[0m.*//;
-    if (m!\x1b\[0;31;1;4m(.*)\n!) {
+    next unless /^$escape;3[12]m/;
+    next unless s/.*?($escape;3[12];1;4m)/$1/g;
+    s/$black.*//;
+    if (m!$boldred(.*)\n!) {
         $a=$1;
-    } elsif (m!\x1b\[0;32;1;4m(.*)\n!) {
+    } elsif (m!$boldgrn(.*)\n!) {
         $b=$1;
         push @pairs, [$a, $b];
         $a="";
