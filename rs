@@ -28,7 +28,7 @@ esac
 
 (hg root >/dev/null &&
   hg files 'set:not symlink() and ./**' -0 ||
-  find . -mindepth 1 -maxdepth 1 -type f -name '.*' -0
+  find . -mindepth 1 -maxdepth 1 -type f -name '.*' -print0
 ) |
   xargs -0 grep $usenull -l -i "$old" |
   xargs -0 -I '<>' ~/bin/r "s{$old}{$new}g" "<>"
