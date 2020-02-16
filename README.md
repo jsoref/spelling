@@ -34,9 +34,16 @@ script / symlink that runs `git` w/ minimal effort.
 See [prerequisites](prerequisites.md)
 
 ## CI Integration
+
 It is possible to integrate this with your favorite CI. I'm slowly working on this.
-My initial work was done for the [checkstyle](https://github.com/checkstyle/checkstyle/) project.
-See the [Travis hook](https://github.com/checkstyle/checkstyle/blob/master/.ci/test-spelling-unknown-words.sh).
+
+I've published a [GitHub Action](https://github.com/features/actions):
+
+> ![check spelling logo](https://raw.githubusercontent.com/check-spelling/art/test/logo/spell-check-32.png)
+ [Spell checking](https://github.com/marketplace/actions/spell-checking)
+
+My initial work was done for the [checkstyle](https://github.com/checkstyle/checkstyle/) project
+(see the [Travis hook](https://github.com/checkstyle/checkstyle/blob/master/.ci/test-spelling-unknown-words.sh)).
 
 ## License
 
