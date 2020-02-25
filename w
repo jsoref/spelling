@@ -39,6 +39,7 @@ while (<>) {
     $token =~ s/(.*?)'+$/$1/;
     next unless $token =~ /./;
     my $key = lc $token;
+    $key =~ s/''+/'/g;
     $key =~ s/'[sd]$//;
     my $char = substr $key, 0, 1;
     $letter_map{$char} = () unless defined $letter_map{$char};
