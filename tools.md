@@ -1,6 +1,7 @@
 # Spelling tools
 
 ## Path Overview
+
 These tools are designed to live in `~/bin`, I haven't spent the time to have
 them fish for their own locations. I'm not a huge fan of `bash` and would rather
 use either portable `sh` or `perl`.
@@ -10,118 +11,118 @@ script / symlink that runs `git` w/ minimal effort.
 
 ## Tools
 
-f:
+### f
 
 - Finds potentially misspelled words in a repository/directory:
   * `f repository`
 - Runs `w` on files (excludes repositories / certain file types)
 
-fchurn:
+### fchurn
 
 - Find newly misspelled words in a repository since the last run:
   * `fchurn repository`
 
-dchurn:
+### dchurn
 
 - Find newly misspelled words in a diff:
   * `d|dchurn`
 
-rediff:
+### rediff
 
 - Find word changes from a diff:
   * `d -U0 -c.|rediff`
 
-w:
+### w
 
 - Generate a list of tokens that might be misspelled
 - You will need to feed this to another tool (`Google Suggest`, `MS Word`, ..., or
   your head) to decide what's actually a misspelling
 
-g:
+### g
 
 - Find instances of token in corpus (including as substrings of other words):
   * `g woord`
 
-ge:
+### ge
 
 - Find instances of word in corpus (this excludes substring word matches):
   * `ge exclu`
 
-gl:
+### gl
 
 - Extract filenames from file prefixed grep output:
   * `g 'something' | gl` ~ `grep -ilr something . `
 
-rs:
+### rs
 
 - Replace and commit spelling fix:
   * `rs teh the` ~ `r 's{teh}{the}' $(g teh -l); s the`
   * `rs 'thi s' 'this ' this` ~ `r 's{thi s}{this }' $(g 'thi s' -l); s this`
 
-r:
+### r
 
 - Run replace token with correction on FILES:
   * `r s/woord/word/ FILES`
 
-s:
+### s
 
 - Commit a spelling fix:
   * `s word`
 
-b:
+### b
 
 - Commit a brand fix:
   * `b JavaScript`
 
-d:
+### d
 
 - Diff:
   * `d -U0 -c.`
 
-dn:
+### dn
 
 - Select only new lines from diff output:
   * `d | dn | w`
 
-hesort:
+### hesort
 
 - Sort spelling commits:
   * `EDITOR=hesort hg histedit ignore`
   * `EDITOR=hesort hg histedit -r 'spelling % ignore'`
 
-chore-spelling:
+### chore-spelling
 
 - Prefix spelling: commits with chore:
   * `chore-spelling 'spelling % master'`
 
-signed-off-by:
+### signed-off-by
 
 - Add 'signed-off-by: user@address':
   * `SIGNED_OFF_BY="Signed-off-by: user <user@example.com>" signed-off-by 'spelling % master'`
 
-splitter:
+### splitter
 
 - Convert patches (standard input or arguments) into numbered patch files
 
-hgfileexts:
+### hgfileexts
 
 - Report file extensions in repository
 
-hgfilesample:
+### hgfilesample
 
 - Run `less` with one file for each file type from `hgfileexts`
 - Use this to identify binary file types to be excluded
 
-hgmv:
+### hgmv
 
 - Rename files:
   * `hgmv Javascript JavaScript`
 
-hgrmjunk:
+### hgrmjunk
 
 - Delete files that should not be spellchecked
 
-convertpatch-to:
+### convertpatch-to
 
 - Convert existing Mercurial commits into other commands
 - this is mostly used for transplanting or replaying a common set of replacements against another repository:
@@ -146,12 +147,12 @@ convertpatch-to:
     # the last perl is because `magic-modules/.ruby-version` triggers annoying warnings that I don't care about
     ```
 
-wdiff:
+### wdiff
 
 - Compare misspellings in two files:
   * `wdiff file.orig file`
 
-wreview:
+### wreview
 
 - See potentially misspelled words highlighted from each file:
   * `wreview FILE`
