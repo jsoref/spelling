@@ -40,7 +40,7 @@ It is possible to integrate this with your favorite CI. I'm slowly working on th
 I've published a [GitHub Action](https://github.com/features/actions):
 
 > ![check spelling logo](https://raw.githubusercontent.com/check-spelling/art/test/logo/spell-check-32.png)
- [Spell checking](https://github.com/marketplace/actions/spell-checking)
+ [Check spelling](https://github.com/marketplace/actions/check-spelling)
 
 My initial work was done for the [checkstyle](https://github.com/checkstyle/checkstyle/) project
 (see the [Travis hook](https://github.com/checkstyle/checkstyle/blob/master/.ci/test-spelling-unknown-words.sh)).
