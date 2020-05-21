@@ -9,7 +9,7 @@ while (<>) {
     print AA $1;
   } elsif (m!^\+\+\+\sb/(.*)!) {
     print BB $1;
-  } elsif (/^@@/) {
+  } elsif (s/^(@@.*@@).*/$1/) {
     print AA "\n\n$_";
     print BB "\n\n$_";
   } elsif (/^-(.*)/) {
