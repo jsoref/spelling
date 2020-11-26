@@ -1,2 +1,17 @@
 #!/bin/sh
-less $(for a in `hgfileexts`; do hg locate "*.$a"|xargs -n1 ls -d 2>/dev/null |head -1; done)
+if hg root >/dev/null 2>/dev/null; then
+  getfiles() {
+    hg locate "*.$1" 2>/dev/null
+  }
+elif git rev-parse --git-dir >/dev/null 2>/dev/null; then
+  getfiles() {
+    git ls-files "*.$1" 2>/dev/null
+  }
+fi
+less $(
+  for a in `hgfileexts`; do (
+    getfiles "$a"
+  ) |
+   xargs -n1 ls -d 2>/dev/null |
+   head -1; done
+)
