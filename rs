@@ -28,6 +28,7 @@ esac
 
 (hg root >/dev/null 2>/dev/null &&
   hg files 'set:not symlink() and ./**' -0 ||
+  git ls-files -z ||
   find . -mindepth 1 -maxdepth 1 -type f -name '.*' -print0
 ) |
   xargs -0 grep $usenull -l -i "$old" |
