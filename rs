@@ -26,7 +26,7 @@ case "${unameOut}" in
     *)       usenull=-Z;;
 esac
 
-(hg root >/dev/null &&
+(hg root >/dev/null 2>/dev/null &&
   hg files 'set:not symlink() and ./**' -0 ||
   find . -mindepth 1 -maxdepth 1 -type f -name '.*' -print0
 ) |
