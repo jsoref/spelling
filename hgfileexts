@@ -1,2 +1,5 @@
 #!/bin/sh
-hg locate |perl -ne 's!.*/!!;next unless s!.*\.!!; print'|sort -u
+(hg locate 2>/dev/null ||
+ git ls-files) |
+  perl -ne 's!.*/!!;next unless s!.*\.!!; print'|
+  sort -u
