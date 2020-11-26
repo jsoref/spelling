@@ -18,10 +18,10 @@ fi
 (
 case "$vcs" in
   hg)
-    hg files -0 | xargs -0 grep -i --color $f -- "$g"; break;;
+    hg files -0 2>/dev/null | xargs -0 grep -i --color $file -- "$grep" 2>/dev/null;;
   git)
-    git ls-files -z | xargs -0 grep -i --color $f -- "$g"; break;;
+    git ls-files -z 2>/dev/null| xargs -0 grep -i --color $file -- "$grep" 2>/dev/null;;
   "")
-    grep --color $f -ir -- "$g" *;;
+    grep --color $file -ir -- "$grep" * 2>/dev/null;;
 esac
-) 2>/dev/null
+)
