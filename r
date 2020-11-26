@@ -1,10 +1,16 @@
 #!/bin/sh
 # ~/bin/r "s/teh/the/" FILES
-r="$1"
+r() {
+replacement="$1"
 shift
 while [ $# -gt 0 ]; do
-  f="$1"
+  file="$1"
   shift
   [ ! -L "$f" ] &&
-    perl -pi -e "$r" -- "$f"
+    perl -pi -e "$replacement" -- "$file"
 done
+}
+
+if [ -z "$spelling_base_dir" ]; then
+  r "$@"
+fi

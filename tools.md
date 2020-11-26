@@ -11,6 +11,14 @@ script / symlink that runs `git` w/ minimal effort.
 
 ## Tools
 
+### spelling-scripts
+- Imports a number of the scripts from this repository as shell
+  resident functions.
+  - This enables you to use `$files` with large repositories to
+    cache the list of files to consider.
+- Some files may export additional functions (if the functions
+  are too trivial to justify their own shell script).
+
 ### f
 
 - Finds potentially misspelled words in a repository/directory:

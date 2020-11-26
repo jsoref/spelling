@@ -1,5 +1,11 @@
 #!/bin/sh
-if hg root >/dev/null 2>/dev/null; then
+hgfilesample() {
+if [ -n "$files" ]; then
+  # this only works if you do: `. $(which hgfilesample)`
+  getfiles() {
+    echo "$files" | grep "\.$1"'$'
+  }
+elif hg root >/dev/null 2>/dev/null; then
   getfiles() {
     hg locate "*.$1" 2>/dev/null
   }
@@ -15,3 +21,8 @@ less $(
    xargs -n1 ls -d 2>/dev/null |
    head -1; done
 )
+}
+
+if [ -z "$spelling_base_dir" ]; then
+  hgfilesample "$@"
+fi

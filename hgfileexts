@@ -1,5 +1,12 @@
 #!/bin/sh
-(hg locate 2>/dev/null ||
+hgfileexts() {
+([ -n "$files" ] && echo "$files" ||
+ hg locate 2>/dev/null ||
  git ls-files) |
   perl -ne 's!.*/!!;next unless s!.*\.!!; print'|
   sort -u
+}
+
+if [ -z "$spelling_base_dir" ]; then
+  hgfileexts "$@"
+fi

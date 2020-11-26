@@ -1,10 +1,24 @@
 #!/bin/sh
-g=$1
-if [ ! -z "$g" ]; then
-  shift
-  f=$1
-  shift
-  grep -a $f -ir "$g" * 2>/dev/null|
-    perl -ne "next unless /(?:^|[^a-z])$g(?:[^a-z]|$)/; print" |
-    grep --color "$g"
+ge() {
+  g=$1
+  if [ ! -z "$g" ]; then
+    shift
+    if [ $# -gt 0 ]; then
+    flags=$1
+    shift
+    fi
+    (
+      if [ -n "$files" ]; then
+        echo "$files" | tr "\n" "\0" | xargs -0 grep -a $flags -ir "$g"
+      else
+        grep -a $flags -ir "$g" *
+      fi
+    ) 2>/dev/null|
+      perl -ne "next unless /(?:^|[^a-z])$g(?:[^a-z]|$)/; print" |
+      grep --color "$g"
+  fi
+}
+
+if [ -z "$spelling_base_dir" ]; then
+  ge "$@"
 fi
