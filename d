@@ -1,3 +1,7 @@
 #!/bin/sh
 # ~/bin/d
-hg diff --git -p "$@"
+if hg root >/dev/null 2>/dev/null; then
+  hg diff --git -p "$@"
+elif git rev-parse --git-dir >/dev/null 2>/dev/null; then
+  git diff "$@"
+fi
