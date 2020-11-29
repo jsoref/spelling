@@ -55,7 +55,7 @@ while (<<>>) {
 # exclude dictionary words
 my $dict = "$dirname/words";
 $dict = '/usr/share/dict/words' unless -e $dict;
-open DICT, '<', $dict;
+open DICT, '<:crlf', $dict;
 while ($word = <DICT>) {
   chomp $word;
   my $lower_word = lc $word;
