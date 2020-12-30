@@ -17,9 +17,22 @@
 #               an underscore (`_`), stuff, `cherrypick` -- this hasn't been a problem)
 #           2. if the previous correction was the same as the current,
 #              replace pick with roll
+case $(basename $1) in
+  *git-rebase-todo*)
+    roll=fixup
+    len=$(cat $1|wc -l|perl -pne 's/^\s+//'|wc -c|perl -pne 's/^\s+//')
+    pre='my $line=sprintf("%0'"$len"'d", $.);'
+    rev='$line'
+    ;;
+  *)
+    roll=roll
+    rev='$3'
+    pre=''
+    ;;
+esac
 cat $1 |\
   egrep -v '^#'|\
-  perl -pne 's/(\S+) (\S+) (\S+) (.*)/$4_$3 $1 $2 $3 $4/' |\
+  perl -pne "$pre"'s/(\S+) (\S+) (\S+) (.*)/$4_'"$rev"'. $1 $2 $3 $4/' |\
   sort |\
-  perl -pne 's/(.*)_(?:.*? )pick/pick/; $q=$1; s/pick/roll/ if $q eq $p; $p = $q;' > $1.0;
+  perl -pne 's/(.*)_(?:.*? )pick/pick/; $q=$1; s/pick/'"$roll"'/ if $q eq $p; $p = $q;' > $1.0;
 mv $1.0 $1
