@@ -38,7 +38,7 @@ esac
     find . -mindepth 1 -maxdepth 1 -type f -name '.*' -print0
   fi
 ) |
-  xargs -0 grep $usenull -l -i "$old" |
+  xargs -0 grep $usenull -l -i "$old" 2>/dev/null |
   xargs -0 -I '<>' r "s{$old}{$new}g" "<>"
 s "$word"
 #$(echo $new|tr A-Z a-z)
