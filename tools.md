@@ -115,6 +115,11 @@ script / symlink that runs `git` w/ minimal effort.
 ### hgfileexts
 
 - Report file extensions in repository
+- Exports `hgfileignore` which reports file extensions in a format
+  compatible with [check-spelling action](
+  https://github.com/marketplace/actions/check-spelling)
+  [excludes](
+  https://github.com/check-spelling/check-spelling/wiki/Configuration#excludes)
 
 ### hgfilesample
 

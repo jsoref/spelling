@@ -7,6 +7,10 @@ hgfileexts() {
   sort -u
 }
 
+hgfileignore() {
+  hgfileexts | perl -pne 's<^><\\.>;s{\n}{\$\n};'
+}
+
 if [ -z "$spelling_base_dir" ]; then
   hgfileexts "$@"
 fi
