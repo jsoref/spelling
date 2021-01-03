@@ -21,6 +21,11 @@ if [ -z "$word" ]; then
 word=$(echo $new|tr A-Z a-z)
 fi
 
+if [ "${new#*$old}" != "$new" ] ||
+   [ "${old#*$new}" != "$old" ]; then
+  old='\b'"$old"'\b'
+fi
+
 unameOut="$(uname -s)"
 case "${unameOut}" in
     Darwin*) usenull=--null;;
