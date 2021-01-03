@@ -1,2 +1,20 @@
 #!/bin/sh
-for a in `hg locate "*$1*"; hg locate | perl -ne 's!/[^/]+$!\n!;next unless /'$1'/;print'|uniq`; do hg mv $a `echo $a | perl -pne "s/$1/$2/"`; done
+if hg root >/dev/null 2>/dev/null; then
+  verb=hg
+elif git rev-parse --git-dir >/dev/null 2>/dev/null; then
+  verb=git
+else
+  verb=
+fi
+for a in `
+  if [ -n "$files" ]; then
+    echo "$files" | grep "$1";
+  elif [ "$verb" = "hg" ]; then
+    hg locate "*$1*"; hg locate | perl -ne 's!/[^/]+$!\n!;next unless /'$1'/;print'
+  elif [ "$verb" = "git" ]; then
+    git ls-files | grep "$1"
+  else
+    find . -mindepth 1 -maxdepth 1 -type f -name '*$1*'
+  fi|
+  uniq`; do
+    $verb mv $a `echo $a | perl -pne "s/$1/$2/"`; done
