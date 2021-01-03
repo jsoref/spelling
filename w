@@ -34,6 +34,8 @@ while (<<>>) {
   # https://www.fileformat.info/info/unicode/char/2019/
   my $rsqm = "\xE2\x80\x99";
   s/$rsqm/'/g;
+  s/\&apos;/'/g;
+  s/\&quot;/"/g;
   s/[^a-zA-Z']+/ /g;
   while (s/([A-Z]{2,})([A-Z][a-z]{2,})/ $1 $2 /g) {}
   while (s/([a-z']+)([A-Z])/$1 $2/g) {}
