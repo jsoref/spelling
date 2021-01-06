@@ -103,6 +103,11 @@ script / symlink that runs `git` w/ minimal effort.
 - Prefix spelling: commits with chore:
   * `chore-spelling 'spelling % master'`
 
+### empty-remote
+
+- Delete remote branches and tags
+  * `empty-remote git@github.com:user/repo.git`
+
 ### signed-off-by
 
 - Add 'signed-off-by: user@address':
