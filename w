@@ -35,6 +35,7 @@ while (<<>>) {
   my $rsqm = "\xE2\x80\x99";
   s/$rsqm/'/g;
   s/\&apos;/'/g;
+  s/\\'/'/g;
   s/\&quot;/"/g;
   s/[^a-zA-Z']+/ /g;
   while (s/([A-Z]{2,})([A-Z][a-z]{2,})/ $1 $2 /g) {}
