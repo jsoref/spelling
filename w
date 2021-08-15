@@ -34,6 +34,7 @@ while (<<>>) {
   # https://www.fileformat.info/info/unicode/char/2019/
   my $rsqm = "\xE2\x80\x99";
   s/$rsqm/'/g;
+  s/\&#39;/'/g;
   s/\&apos;/'/g;
   s/\\'/'/g;
   s/\&quot;/"/g;
