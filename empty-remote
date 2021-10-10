@@ -3,14 +3,8 @@ if [ -z "$1" ]; then
   echo "$0 url-for-remote-git-repository-with-branches-or-tags-to-remove" >&2
   exit 1
 fi
-if command -v parallel >/dev/null; then
-  dispatch() {
-    parallel -I% --max-args 25 git push "$1" %
-  }
-else
-  dispatch() {
-    xargs -n10 git push "$1"
-  }
-fi
+dispatch() {
+  xargs -P10 -n25 git push "$1"
+}
 cd ~/code/empty
 git ls-remote "$1" |perl -ne 'next if /HEAD|\{}/;s/^\S+\s+/:/;print'|dispatch "$1"
