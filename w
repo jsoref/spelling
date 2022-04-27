@@ -44,7 +44,7 @@ while (<<>>) {
   for my $token (split /\s+/, $_) {
     $token =~ s/^[^Ii]?'+(.*)/$1/;
     $token =~ s/(.*?)'+$/$1/;
-    next unless $token =~ /./;
+    next unless $token =~ /.../;
     my $key = lc $token;
     $key =~ s/''+/'/g;
     $key =~ s/'[sd]$//;
