@@ -1,0 +1,9 @@
+#!/bin/sh
+lets_go_with_this() {
+  git add -u
+  GIT_EDITOR=true git rebase --continue
+}
+
+if [ -z "$spelling_base_dir" ]; then
+  lets_go_with_this
+fi

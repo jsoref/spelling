@@ -32,6 +32,7 @@ rs
 s
 hgfileexts
 hgfilesample
+lets_go_with_this
 sort_x
 '
 for script in $(echo "$scripts"); do
