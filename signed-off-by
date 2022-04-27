@@ -1,10 +1,11 @@
 #!/bin/sh
 # https://conventionalcommits.org/
 # takes a revset and appends "$SIGNED_OFF_BY" to each spelling commit.
+signed_off_canary="$(echo "$SIGNED_OFF_BY" | grep ".")"
 
 append_signed_off_by() {
   commitmsg="$1"
-  if ! grep "$SIGNED_OFF_BY" "$commitmsg" > /dev/null; then
+  if ! grep "$signed_off_canary" "$commitmsg" > /dev/null; then
     message="$((cat "$commitmsg" ; echo "$SIGNED_OFF_BY") | uniq)"
     echo "$message" > "$commitmsg"
   fi
