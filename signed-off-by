@@ -11,16 +11,32 @@ append_signed_off_by() {
   fi
 }
 
-if [ $# -eq 0 ]; then
-  echo "SIGNED_OFF_BY='...' $0 range"
-  echo " -- initiate rewrite"
-  exit 1
-fi
-if [ "$1" = "message" ]; then
-  append_signed_off_by "$2"
-elif [ "$1" = "plan" ]; then
-  perl -pi -e 'unless ($second) { s/^pick/edit/; $second=1; } else { s/^pick/mess/ }' $2
+hg_signed_off_by() {
+  if [ $# -eq 0 ]; then
+    echo "SIGNED_OFF_BY='...' $0 range"
+    echo " -- initiate rewrite"
+    exit 1
+  fi
+  if [ "$1" = "message" ]; then
+    append_signed_off_by "$2"
+  elif [ "$1" = "plan" ]; then
+    perl -pi -e 'unless ($second) { s/^pick/edit/; $second=1; } else { s/^pick/mess/ }' $2
+  else
+    EDITOR="$0 plan" hg histedit "$@"
+    EDITOR="$0 message" hg histedit --cont
+  fi
+}
+
+git_signed_off_by() {
+  if [ "$(basename "$1")" = "git-rebase-todo" ]; then
+    perl -pi -e 's/^pick/r/' "$1"
+  else
+    append_signed_off_by "$1"
+  fi
+}
+
+if [ "$0" = "$GIT_EDITOR" ] ; then
+  git_signed_off_by "$@"
 else
-  EDITOR="$0 plan" hg histedit "$@"
-  EDITOR="$0 message" hg histedit --cont
+  hg_signed_off_by "$@"
 fi
