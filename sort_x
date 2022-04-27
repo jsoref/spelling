@@ -1,0 +1,8 @@
+#!/bin/sh
+sort_x() {
+  sort -f "$1" | uniq > .1; mv .1 "$1";
+}
+
+if [ -z "$spelling_base_dir" ]; then
+  sort_x "$@"
+fi

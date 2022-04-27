@@ -32,6 +32,7 @@ rs
 s
 hgfileexts
 hgfilesample
+sort_x
 '
 for script in $(echo "$scripts"); do
 . "$spelling_base_dir/$script"
